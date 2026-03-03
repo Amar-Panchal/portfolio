@@ -1,506 +1,926 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <meta http-equiv='cache-control' content='no-cache'>
-  <meta http-equiv='expires' content='0'>
-  <meta http-equiv='pragma' content='no-cache'>
-  <title>Amar Panchal </title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amar Panchal - Frontend Engineer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <!-- Favicons -->
-  <link rel="icon" type="image/x-icon" href="assests/img/icon.png">
-  <link rel="icon" class="icons-fav" href="assets/img/icon.png" type="image/x-icon">
+        :root {
+            --dark-bg: #0a0e27;
+            --card-bg: #1a1f3a;
+            --accent: #00d9ff;
+            --accent-secondary: #ff006e;
+            --text-primary: #ffffff;
+            --text-secondary: #a8b5d8;
+            --border-color: #2a3152;
+        }
 
-  <!-- Google Fonts -->
+        html {
+            scroll-behavior: smooth;
+        }
 
-  <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-    rel="stylesheet">
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #0f1533 100%);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            background-attachment: fixed;
+        }
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
-  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+        /* Animated background effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 217, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 0, 110, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
 
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="assets/vendor/venobox/venobox.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
-    integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <!-- Template Main CSS File -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/fontawesome.min.css"
-    integrity="sha512-RvQxwf+3zJuNwl4e0sZjQeX7kUa3o82bDETpgVCH2RiwYSZVDdFJ7N/woNigN/ldyOOoKw8584jM4plQdt8bhA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <link href="assets/css/style.css" rel="stylesheet">
+        /* Header Navigation */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 217, 255, 0.1);
+            padding: 1rem 2rem;
+            animation: slideDown 0.6s ease-out;
+        }
 
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Space Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out 0.1s both;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .btn {
+            padding: 0.9rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent) 0%, #00a8cc 100%);
+            color: var(--dark-bg);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 217, 255, 0.5);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 217, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            position: relative;
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent) 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+            border-radius: 2px;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0, 217, 255, 0.15);
+        }
+
+        .skill-category h3 {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .skill-item {
+            display: inline-block;
+            background: rgba(0, 217, 255, 0.1);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            margin: 0.5rem 0.5rem 0.5rem 0;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: rgba(0, 217, 255, 0.2);
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 50px rgba(0, 217, 255, 0.2);
+        }
+
+        .project-header {
+            background: linear-gradient(135deg, rgba(0, 217, 255, 0.15) 0%, rgba(255, 0, 110, 0.1) 100%);
+            padding: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-subtitle {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .project-content {
+            padding: 2rem;
+            flex-grow: 1;
+        }
+
+        .project-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .project-content li {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .project-content li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            padding: 0 2rem 2rem;
+        }
+
+        .project-tag {
+            background: rgba(0, 217, 255, 0.1);
+            color: var(--accent);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(0, 217, 255, 0.3);
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent) 0%, var(--accent-secondary) 100%);
+        }
+
+        .experience-item {
+            margin-bottom: 2.5rem;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            border: 3px solid var(--dark-bg);
+            border-radius: 50%;
+        }
+
+        .experience-item.active::before {
+            background: var(--accent-secondary);
+            box-shadow: 0 0 0 8px rgba(255, 0, 110, 0.2);
+        }
+
+        .experience-item h3 {
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .experience-item .position {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-item .period {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .experience-item li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .experience-item li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Education & Awards */
+        .education-awards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .edu-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .edu-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .edu-card h3 {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .edu-card .course {
+            color: var(--text-primary);
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .edu-card .university {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .edu-card .year {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-content p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 1rem;
+            padding: 0.7rem 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            background: rgba(0, 217, 255, 0.05);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            background: rgba(10, 14, 39, 0.5);
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero {
+                padding: 4rem 1rem;
+            }
+        }
+
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
 </head>
-
 <body>
+    <!-- Navigation -->
+    <header>
+        <nav>
+            <a href="#home" class="logo">AMAR</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="header-tops">
-    <div class="container d-flex  align-items-center justify-content-between">
-      <div>
-        <h1>Hi,</h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="index.html" class="mr-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a> -->
-        <h2 class="typing-demo">I'm <span>Amar Panchal &nbsp;</span>,&nbsp;&nbsp;</h2>
-        <h4 class="typing-demo">Frontend Developer &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
-
-        <nav class="nav-menu d-none d-lg-block">
-          <ul>
-            <li class="active"><a href="#header">Home</a></li>
-            <li><a href="#about">Introduction</a></li>
-            <li><a href="#Projects">Projects</a></li>
-            <li><a href="#Experience">Experience</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="https://drive.google.com/file/d/1FWiO-JU_HT8OxJVQuhF8ddcG2c1__e8g/view?usp=sharing" target="_blank">Resume</a></li>
-          </ul>
-        </nav><!-- .nav-menu -->
-
-        <div class="social-links">
-          <a href="tel: 9545224098" style="color:#0649da;"><i class="fas fa-phone-square"></i></a>
-          <a href="https://wa.me/+919545224098" target="_blank" style="color:#049227;"><i
-              class="fab fa-whatsapp-square"></i></a>
-          <a href="https://github.com/Amar-Panchal" target="_blank" style="color:rgb(29, 29, 29);"><i class="fab fa-github-square"></i></a> 
-          <a href="https://www.linkedin.com/in/amar-panchal-5003651a4/" target="_blank" style="color:#053ecfd4;"><i class="fab fa-linkedin"></i></a> 
-          <a href="mailto: amarpanchal2001@gmail.com" style="color:#ec6a06;"><i class="fas fa-envelope-square"></i></a>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Amar Panchal</h1>
+        <p class="subtitle">Frontend Engineer | React & TypeScript Specialist</p>
+        <p>Building scalable, enterprise-grade applications with 3+ years of expertise in React.js, TypeScript, and performance optimization.</p>
+        <div class="cta-buttons">
+            <a href="#contact" class="btn btn-primary">Get In Touch</a>
+            <a href="https://github.com" target="_blank" class="btn btn-secondary">View GitHub</a>
         </div>
-      </div>
-      <div>
-        <img class="first-img" src="./assets/img/me.png" alt="">
-      </div>
-    </div>
-  </header><!-- End Header -->
+    </section>
 
-  <!-- ======= About Section ======= -->
-  <section id="about" class="about">
-
-    <!-- ======= About Me ======= -->
-    <div class="about-me container">
-
-
-
-      <div class="row align-items-center">
-        <div class="col-lg-4 text-center">
-          <img class="my_photo" src="./assets/img/my_photo.jpg" alt="">
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div style="background: var(--card-bg); border: 1px solid var(--border-color); padding: 2.5rem; border-radius: 10px; margin-top: 2rem;">
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                I'm a passionate Frontend Software Engineer with <strong style="color: var(--accent);">3+ years</strong> of hands-on experience building high-performance React applications at scale. My expertise spans full-stack frontend development, state management, component architecture, and performance optimization.
+            </p>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary); margin-bottom: 1.5rem;">
+                I specialize in crafting reusable component libraries, implementing enterprise authentication systems (Azure AD), and optimizing large datasets for seamless user experiences. I'm deeply committed to writing clean, maintainable code and following best practices in Agile environments.
+            </p>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-secondary);">
+                When I'm not building elegant UI solutions, I'm exploring cutting-edge frontend technologies and contributing to meaningful projects that impact users directly.
+            </p>
         </div>
-        <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
-          <h3>Frontend Developer  &nbsp;</h3> </br>
+    </section>
 
-          <p class="font-italic">
-            Hello, my name is Amar. I am a Software Development Engineer with over 1.5 years of experience in software development. 
-            My expertise lies in frontend development, with a strong focus on ReactJS. 
-            I am passionate about staying up-to-date with the latest technology trends and continuously expanding my skills to deliver 
-            high-quality software solutions. Thank you for taking the time to review my portfolio.
-          </p>
-
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Skills & Expertise</h2>
+        <div class="skills-container" style="margin-top: 2rem;">
+            <div class="skill-category">
+                <h3>🔤 Languages</h3>
+                <span class="skill-item">TypeScript</span>
+                <span class="skill-item">JavaScript</span>
+                <span class="skill-item">HTML5</span>
+                <span class="skill-item">CSS3</span>
+            </div>
+            <div class="skill-category">
+                <h3>⚛️ Frameworks & Libraries</h3>
+                <span class="skill-item">React.js</span>
+                <span class="skill-item">Redux Toolkit</span>
+                <span class="skill-item">RTK Query</span>
+                <span class="skill-item">Node.js</span>
+                <span class="skill-item">Express</span>
+                <span class="skill-item">Knockout.js</span>
+            </div>
+            <div class="skill-category">
+                <h3>🎨 UI Libraries</h3>
+                <span class="skill-item">Material UI</span>
+                <span class="skill-item">Kendo UI</span>
+                <span class="skill-item">Bootstrap</span>
+                <span class="skill-item">Chart.js</span>
+            </div>
+            <div class="skill-category">
+                <h3>🧪 Testing & Tools</h3>
+                <span class="skill-item">Playwright</span>
+                <span class="skill-item">Unit Testing</span>
+                <span class="skill-item">Git & GitHub</span>
+                <span class="skill-item">Azure</span>
+                <span class="skill-item">Jira</span>
+            </div>
         </div>
-      </div>
+    </section>
 
-    </div><!-- End About Me -->
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid" style="margin-top: 2rem;">
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Elab Report</div>
+                    <div class="project-subtitle">Dynamic Report Builder</div>
+                </div>
+                <div class="project-content">
+                    <ul>
+                        <li>Built drag-and-drop medical report builder with customizable layouts</li>
+                        <li>Implemented parameter-based dynamic data binding</li>
+                        <li>Created multi-page print functionality with automatic page breaks using React PDF</li>
+                        <li>Improved report generation efficiency by 35%</li>
+                    </ul>
+                </div>
+                <div class="project-tags">
+                    <span class="project-tag">React</span>
+                    <span class="project-tag">TypeScript</span>
+                    <span class="project-tag">PDF</span>
+                </div>
+            </div>
 
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Pathkind</div>
+                    <div class="project-subtitle">QC, CPRT, INVENTORY Modules</div>
+                </div>
+                <div class="project-content">
+                    <ul>
+                        <li>Published reusable custom NPM grid component library supporting 80+ grids</li>
+                        <li>Optimized performance for large datasets using memoization</li>
+                        <li>Integrated RTK Query with custom Redux middleware for centralized API state management</li>
+                        <li>Reduced load time and improved responsiveness</li>
+                    </ul>
+                </div>
+                <div class="project-tags">
+                    <span class="project-tag">React</span>
+                    <span class="project-tag">Redux Toolkit</span>
+                    <span class="project-tag">NPM</span>
+                </div>
+            </div>
 
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">SAC-GRC</div>
+                    <div class="project-subtitle">Enterprise Authentication & Integration</div>
+                </div>
+                <div class="project-content">
+                    <ul>
+                        <li>Developed new modules with external API integrations</li>
+                        <li>Implemented Azure Active Directory authentication</li>
+                        <li>Built custom UI integrations inside Azure Portal</li>
+                        <li>Improved maintainability through reusable code components</li>
+                    </ul>
+                </div>
+                <div class="project-tags">
+                    <span class="project-tag">Azure AD</span>
+                    <span class="project-tag">React</span>
+                    <span class="project-tag">TypeScript</span>
+                </div>
+            </div>
 
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">ElabAssist Dashboard</div>
+                    <div class="project-subtitle">Data Visualization & Reporting</div>
+                </div>
+                <div class="project-content">
+                    <ul>
+                        <li>Developed interactive dashboards using Chart.js</li>
+                        <li>Integrated external REST APIs for real-time data</li>
+                        <li>Implemented CryptoJS-based data decryption</li>
+                        <li>Designed responsive, cross-device compatible interfaces</li>
+                    </ul>
+                </div>
+                <div class="project-tags">
+                    <span class="project-tag">Chart.js</span>
+                    <span class="project-tag">REST APIs</span>
+                    <span class="project-tag">Security</span>
+                </div>
+            </div>
 
-    <!-- ======= Interests ======= -->
-    <div class="interests container">
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">Group360</div>
+                    <div class="project-subtitle">Automated Testing & QA</div>
+                </div>
+                <div class="project-content">
+                    <ul>
+                        <li>Developed automated UI test suites</li>
+                        <li>Ensured cross-browser compatibility</li>
+                        <li>Conducted API and functional testing</li>
+                        <li>Reduced manual testing effort by 50%</li>
+                    </ul>
+                </div>
+                <div class="project-tags">
+                    <span class="project-tag">Playwright</span>
+                    <span class="project-tag">Automation</span>
+                    <span class="project-tag">Testing</span>
+                </div>
+            </div>
 
-      <div class="section-title pt-5">
-        <h2>Skills</h2>
-      </div>
-
-      <div class="row">
-        <div class="d-flex flex-wrap justify-content-between align-items-center">
-          <div class="icon-box">
-            <!-- <i class="fab fa-react" style="color: #ffbb2c;"></i> -->
-            <h3>ReactJS</h3>
-          </div>
-          <div class="icon-box">
-            <!-- <i class="fab fa-ts" style="color: #08b9d0;"></i> -->
-            <h3>Typescript</h3>
-          </div>
-          <div class="icon-box">
-            <h3>Javascript</h3>
-          </div>
-          <div class="icon-box">
-            <h3>KnockoutJS</h3>
-          </div>
-          <div class="icon-box">
-            <!-- <i class="django" style="font-size: 14px;padding: 3px 4px 3px;color:#ffffff;background-color:#033610">
-              django </i> -->
-            <h3>&nbsp;&nbsp;PlayWright</h3>
-          </div>
-          <div class="icon-box">
-            <!-- <i class="fab fa-html5" style="color:#ed5d04"></i> -->
-            <h3>HTML</h3>
-          </div>
-          <div class="icon-box">
-            <!-- <i class="fab fa-css3-alt" style="color:#0444f4"></i> -->
-            <h3>CSS</h3>
-          </div>
-          <div class="icon-box">
-            <!-- <i class="fab fa-bootstrap" style="color:#8a6cde"></i> -->
-            <h3>BootStrap</h3>
-          </div>
-          <div class="icon-box">
-            <!-- <i class="fab fa-bootstrap" style="color:#8a6cde"></i> -->
-            <h3>Kendo UI</h3>
-          </div>
-          <div class="icon-box">
-            <!-- <i class="fab fa-bootstrap" style="color:#8a6cde"></i> -->
-            <h3>Matrial Ui</h3>
-          </div>
+            <div class="project-card">
+                <div class="project-header">
+                    <div class="project-title">ClassReach</div>
+                    <div class="project-subtitle">Responsive UI Development</div>
+                </div>
+                <div class="project-content">
+                    <ul>
+                        <li>Built responsive user-friendly interfaces</li>
+                        <li>Implemented client-side data binding with Knockout.js</li>
+                        <li>Consumed .NET controller endpoints via AJAX</li>
+                        <li>Improved performance and scalability</li>
+                    </ul>
+                </div>
+                <div class="project-tags">
+                    <span class="project-tag">Knockout.js</span>
+                    <span class="project-tag">AJAX</span>
+                    <span class="project-tag">.NET</span>
+                </div>
+            </div>
         </div>
+    </section>
 
-      </div>
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="experience-timeline" style="margin-top: 2rem;">
+            <div class="experience-item active">
+                <h3>PraveeTech Pvt. Ltd.</h3>
+                <div class="position">Software Engineer</div>
+                <div class="period">Apr 2024 – Present | Pune</div>
+                <ul>
+                    <li>Developed reusable UI components and modular architecture, reducing development time by 30%</li>
+                    <li>Created a centralized reusable Custom Grid Component (NPM package) supporting 80+ grids across 3 major modules</li>
+                    <li>Automated UI workflows using Playwright, achieving 95% test pass rate and reducing production bugs by 40%</li>
+                    <li>Optimized rendering performance using memoization and efficient API data handling for large datasets</li>
+                </ul>
+            </div>
 
-    </div>
-
-
-
-
-  </section><!-- End About Section -->
-
-  <!-- ======= Experience Section ======= -->
-  <section id="Experience" class="Experience">
-    <div class="container">
-
-
-      <div class="row">
-        <div class="col-lg-6">
-          <h3 class="Experience-title">Education</h3>
-          <div class="Experience-item">
-            <h4>
-              Bachelor of Technology in Computer Science & Engineering </h4>
-            <h5>2018 - 2022</h5>
-            <h6>CGPA :- 8.40 / 10</h6>
-            <p>M.B.E.S. College of Engineering, Ambajogai </p>
-            <p>Dr. Babasaheb Ambedkar Technological University</p>
-
-          </div>
-           <div class="Experience-item">
-            <h4> HSC (12th Science) </h4>
-            <h5>2017 - 2018</h5>
-            <h6>Percentage :- 65.69 %</h6>
-            <p>Yogeshwari College of Science, Ambajogai </p>
-          </div>
-
-          <div class="Experience-item">
-            <h4> SSC (10th) </h4>
-            <h5>2015 - 2016</h5>
-            <h6>Percentage :- 82.60 %</h6>
-            <p>Kholeshwar Vidyalay, Ambajogai </p>
-          </div>
-
-
+            <div class="experience-item">
+                <h3>Blue Pearl Health Tech Pvt. Ltd.</h3>
+                <div class="position">Frontend Developer</div>
+                <div class="period">Nov 2022 – Apr 2024 | Pune</div>
+                <ul>
+                    <li>Integrated Azure AD authentication in React + TypeScript applications for secure, role-based access control</li>
+                    <li>Developed reusable components, custom hooks, and published custom NPM packages</li>
+                    <li>Built interactive dashboards using Chart.js and Kendo UI</li>
+                    <li>Secured login APIs using CryptoJS encryption and customized Kendo UI components</li>
+                </ul>
+            </div>
         </div>
-        <div class="col-lg-6">
-          <h3 class="Experience-title ex-mobile"> Experience </h3>
-          <div class="Experience-item">
-            <h4>Frontend Developer Intern </h4>
-            <span style="font-size: 12px;">Sep 2021 - Dec 2021</span>
-            <p> Riser Techub Pvt. Ltd.</p>
-            <p style="font-size: 14px;">Skills Used:- React.js, Javascript, Html, CSS, Bootstrap, ReactBootstrap</p>
-          </div>
-          <div class="Experience-item">
-            <h4>Frontend Developer</h4>
-            <span style="font-size: 12px;">Nov 2022 - April 2024</span>
-                <p>Blue Pearl Health Tech Pvt. Ltd , Pune.</p>
-                <p style="font-size: 14px;">Skills Used:- ReactJS, Typescript, Javascript, KnockoutJS, PlayWright, HTML,
-                  CSS, BootStrap, Kendo UI, Matrial Ui</p>
-          </div>
-          <div class="Experience-item">
-            <h4> Software Engineer</h4>
-            <span style="font-size: 12px;">April 2024 - Present </span>
-                <p>PraveeTech Pvt. Ltd.</p>
-                <p style="font-size: 14px;">Skills Used:- ReactJS, Typescript, Javascript, KnockoutJS, PlayWright, HTML,
-                  CSS, BootStrap, Kendo UI, Matrial Ui</p>
-          </div>
+    </section>
+
+    <!-- Education & Awards Section -->
+    <section id="education">
+        <h2 class="section-title">Education & Recognition</h2>
+        <div class="education-awards" style="margin-top: 2rem;">
+            <div class="edu-card">
+                <h3>🎓 Education</h3>
+                <div class="course">BTech in Computer Science & Engineering</div>
+                <div class="university">Dr. Babasaheb Ambedkar Technological University</div>
+                <div class="year">2018 – 2022</div>
+            </div>
+
+            <div class="edu-card">
+                <h3>🏆 Performance of the Month</h3>
+                <div class="course">Outstanding Leadership Award</div>
+                <div class="university">Awarded for outstanding leadership and impactful contributions to projects</div>
+            </div>
+
+            <div class="edu-card">
+                <h3>⭐ Rising Star Award</h3>
+                <div class="course">Performance & Growth Recognition</div>
+                <div class="university">Awarded for recognized performance and contributions, demonstrating rapid growth and dedication</div>
+            </div>
         </div>
-        
-      </div>
+    </section>
 
-    </div>
-  </section><!-- End Experience Section -->
-
-
-  <!-- ======= Projects Section ======= -->
-  <section id="Projects" class="Projects">
-    <div class="container">
-      <div class="section-title pt-3 pb-3">
-        <h2>Professional Projects </h2>
-      </div>
-      <div class="row Projects-container" style="padding-left:15px ;">
-        <div>
-          <h6>ElabNext:-</h6>
-          <ul>
-            <li> Develop new application modules and integrate external APIs.</li>
-            <li> Implement Azure Active Directory Authentication in React TypeScript apps.</li>
-            <li> Design and integrate custom UI components in Azure Portal and apps.</li>
-            <li> Customize Kendo UI components and create npm packages for drag-and-drop functionality.</li>
-            <li> Focus on writing reusable code to enhance application efficiency and maintainability.</li>
-          </ul>
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <h2 class="section-title" style="text-align: center;">Let's Connect</h2>
+        <div class="contact-content" style="margin-top: 2rem;">
+            <p>I'm always interested in hearing about new projects and opportunities. Feel free to reach out if you'd like to collaborate or just have a chat!</p>
+            <div class="contact-links">
+                <a href="mailto:amarpanchal2001@gmail.com" class="contact-link">
+                    <span>✉️</span> Email
+                </a>
+                <a href="https://linkedin.com/in/amar-panchal" target="_blank" class="contact-link">
+                    <span>💼</span> LinkedIn
+                </a>
+                <a href="https://github.com" target="_blank" class="contact-link">
+                    <span>💻</span> GitHub
+                </a>
+                <a href="tel:+919545224098" class="contact-link">
+                    <span>📱</span> Call
+                </a>
+            </div>
         </div>
-      </div>
-      <div class="row Projects-container" style="padding-left:15px ;">
-        <div>
-          <h6>ElabAssists Dashboard:-</h6>
-          <ul>
-            <li> Design dynamic dashboards and charts using Chart.js. </li>
-            <li> Integrate external APIs for seamless data management.</li>
-            <li> Ensure secure data handling through decryption using crypto.js.</li>
-          </ul>
-        </div>
-      </div>
+    </section>
 
-      <div class="row Projects-container" style="padding-left:15px ;">
-        <div>
-          <h6>ClassReach:-</h6>
-          <ul>
-            <li> Retrieve and manage data within the app by consuming APIs. </li>
-            <li> Implement data binding using Knockout.js in TypeScript for MVC .NET applications.</li>
-          </ul>
-        </div>
-      </div>
+    
 
-      <div class="row Projects-container" style="padding-left:15px ;">
-        <div>
-          <h6>SAC GRC:-</h6>
-          <ul>
-            <li> Developing new app modules, integrating external APIs, </li>
-            <li> Implementing Azure AD Authentication in React TypeScript, </li>
-            <li> Designing & integrating custom UI components in Azure Portal & apps,</li>
-            <li> Focusing on writing reusable code for enhanced efficiency & maintainability.</li>
-            <li>Implemented playwright testing for frontend testing  enhancing reliability and efficiency.</li>
-          </ul>
-        </div>
-      </div>
+    <script>
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
 
-      <div class="section-title pt-3 pb-3">
-        <h2>Practice Reactjs Projects </h2>
-      </div>
+        // Fade in animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
 
-      <div class="row Projects-container">
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
 
-        <div class="col-lg-4 col-md-6 Projects-item filter-app">
-          <div class="Projects-wrap">
-            <a target="_blank" href="https://spectacular-dango-a7d490.netlify.app/">
-              <img src="assets/img/projects/BookStore.jpg" class="img-fluid" alt="">
-              <div class="Projects-info">
-                <p>E-BookStore</p>
-                <h6 class="project-visit-btn">CLICK ME</h6>
-              </div>
-            </a>
-          </div>
-        </div>
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
 
-        <div class="col-lg-4 col-md-6 Projects-item filter-app">
-          <div class="Projects-wrap">
-            <a target="_blank" href="https://quirky-wescoff-25ee91.netlify.app/">
-              <img src="assets/img/projects/foodies.jpg" class="img-fluid" alt="">
-              <div class="Projects-info">
-                <p>Foodies Shop</p>
-                <h6 class="project-visit-btn">CLICK ME</h6>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 Projects-item filter-app">
-          <div class="Projects-wrap">
-            <a target="_blank" href="https://radiant-dango-e45385.netlify.app/">
-              <img src="assets/img/projects/student_records.jpg" class="img-fluid" alt="">
-              <div class="Projects-info">
-                <p>Student Records</p>
-                <h6 class="project-visit-btn">CLICK ME</h6>
-              </div>
-            </a>
-          </div>
-
-        </div>
-      </div>
-
-      <div class="row Projects-container">
-
-        <div class="col-lg-4 col-md-6 Projects-item filter-app">
-          <div class="Projects-wrap">
-            <a target="_blank" href="https://idyllic-mandazi-f3139d.netlify.app/">
-              <img src="assets/img/projects/pomodro_app.jpg" class="img-fluid" alt="">
-              <div class="Projects-info">
-                <p>Pomodro App</p>
-                <h6 class="project-visit-btn">CLICK ME</h6>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 Projects-item filter-app">
-          <div class="Projects-wrap">
-            <a target="_blank" href="https://boisterous-biscochitos-864958.netlify.app/">
-              <img src="assets/img/projects/Github_user_search.jpg" class="img-fluid" alt="">
-              <div class="Projects-info">
-                <p>Foodies Shop</p>
-                <h6 class="project-visit-btn">CLICK ME</h6>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 Projects-item filter-app">
-          <div class="Projects-wrap">
-            <a target="_blank" href="https://stoic-mclean-c7ae5f.netlify.app/">
-              <img src="assets/img/projects/Table_sorting.jpg" class="img-fluid" alt="">
-              <div class="Projects-info">
-                <p>Records handling</p>
-                <h6 class="project-visit-btn">CLICK ME</h6>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="row Projects-container">
-
-        <div class="col-lg-4 col-md-6 Projects-item filter-app">
-          <div class="Projects-wrap">
-            <a target="_blank" href="https://optimistic-bhaskara-43a3ea.netlify.app/">
-              <img src="assets/img/projects/static_web_3.jpg" class="img-fluid" alt="">
-              <div class="Projects-info">
-                <p>Animation</p>
-                <h6 class="project-visit-btn">CLICK ME</h6>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 Projects-item filter-app">
-          <div class="Projects-wrap">
-            <a target="_blank" href="https://competent-nobel-c3fa7c.netlify.app/">
-              <img src="assets/img/projects/Todo.jpg" class="img-fluid" alt="">
-              <div class="Projects-info">
-                <p>Todo App</p>
-                <h6 class="project-visit-btn">CLICK ME</h6>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 Projects-item filter-app">
-          <div class="Projects-wrap">
-            <a target="_blank" href="https://radiant-dango-e45385.netlify.app/">
-              <img src="assets/img/projects/student_records.jpg" class="img-fluid" alt="">
-              <div class="Projects-info">
-                <p>Student Records</p>
-                <h6 class="project-visit-btn">CLICK ME</h6>
-              </div>
-            </a>
-          </div>
-
-        </div>
-      </div>
-
-
-      <div class="section-title pt-3 pb-3">
-        <h2>HTML CSS Projects</h2>
-      </div>
-
-      <div class="row Projects-container">
-
-        <div class="col-lg-4 col-md-6 Projects-item filter-app">
-          <div class="Projects-wrap">
-            <a target="_blank" href="https://earnest-lokum-1e6518.netlify.app/">
-              <img src="assets/img/projects/static_web_1.jpg" class="img-fluid" alt="">
-              <div class="Projects-info">
-                <p>Static 1</p>
-                <h6 class="project-visit-btn">CLICK ME</h6>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 Projects-item filter-app">
-          <div class="Projects-wrap">
-            <a target="_blank" href="https://romantic-hopper-96dc31.netlify.app/">
-              <img src="assets/img/projects/static_web_2.jpg" class="img-fluid" alt="">
-              <div class="Projects-info">
-                <p>static 2</p>
-                <h6 class="project-visit-btn">CLICK ME</h6>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 Projects-item filter-app">
-          <div class="Projects-wrap">
-            <a target="_blank" href="https://agitated-cray-5fb853.netlify.app/">
-              <img src="assets/img/projects/static_web_5.jpg" class="img-fluid" alt="">
-              <div class="Projects-info">
-                <p>static 3</p>
-                <h6 class="project-visit-btn">CLICK ME</h6>
-              </div>
-            </a>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    </div>
-  </section><!-- End Projects Section -->
-
-  <!-- ======= Contact Section ======= -->
-  <section id="contact" class="contact">
-    <div class="container">
-
-      <div class="section-title">
-        <h3>
-          If you want to have a chat or know more, please feel free to drop a message.
-        </h3>
-      </div>
-      <div class="social-links">
-        <a href="tel: 9545224098" style="color:#0649da"><i class="fas fa-phone-square"></i></a>
-        <a href="https://wa.me/+919545224098" target="_blank" style="color:#049227;"><i
-            class="fab fa-whatsapp-square"></i></a>
-        <a href="https://github.com/Amar-Panchal" target="_blank" style="color:rgb(29, 29, 29);"><i
-            class="fab fa-github-square"></i></a>
-        <a href="https://www.linkedin.com/in/amar-panchal-5003651a4/" target="_blank" style="color:#053ecfd4;"><i
-            class="fab fa-linkedin"></i></a>
-        <a href="mailto: amarpanchal2001@gmail.com" style="color:#ec6a06;"><i class="fas fa-envelope-square"></i></a>
-      </div>
-      <div class="text-contact">
-        <h6>Mobile No:- +91-9545224098</h6>
-        <h6>Email-id:- amarpanchal2001@gmail.com</h6>
-      </div>
-
-
-
-    </div>
-  </section><!-- End Contact Section -->
-
-  <!-- ======= Experience Section ======= -->
-
-
-
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/jquery/jquery.min.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-  <script src="assets/vendor/waypoints/jquery.waypoints.min.js"></script>
-  <script src="assets/vendor/counterup/counterup.min.js"></script>
-  <script src="assets/vendor/owl.carousel/owl.carousel.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/venobox/venobox.min.js"></script>
-
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
-
+        // Add staggered animation delays
+        document.querySelectorAll('.skill-category, .project-card, .experience-item').forEach((el, index) => {
+            el.style.animationDelay = `${index * 0.1}s`;
+        });
+    </script>
 </body>
-
 </html>
