@@ -243,38 +243,35 @@
             border-radius: 2px;
         }
 
-       .skills-wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 1.5rem;
+     .skills-single-card {
     margin-top: 2rem;
-}
-
-.skill-block {
     background: var(--card-bg);
     border: 1px solid var(--border-color);
-    padding: 1.8rem;
+    padding: 2.5rem;
     border-radius: 12px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
     transition: all 0.3s ease;
 }
 
-.skill-block:hover {
+.skills-single-card:hover {
     border-color: var(--accent);
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 217, 255, 0.15);
+    box-shadow: 0 15px 40px rgba(0, 217, 255, 0.15);
 }
 
-.skill-block h3 {
+.skills-single-card h3 {
     color: var(--accent);
-    font-size: 1.1rem;
-    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
     font-weight: 600;
 }
 
-.skill-block p {
+.skills-text {
     color: var(--text-secondary);
-    line-height: 1.7;
-    font-size: 0.95rem;
+    font-size: 1rem;
+    line-height: 1.8;
 }
         /* Projects Section */
         .projects-grid {
@@ -630,38 +627,20 @@
     </section>
 
    <!-- Skills Section -->
+<!-- Skills Section -->
 <section id="skills">
     <h2 class="section-title">Technical Skills</h2>
 
-    <div class="skills-wrapper">
-        <div class="skill-block">
-            <h3>Frontend Development</h3>
-            <p>
-                React.js, TypeScript, JavaScript (ES6+), Redux Toolkit, RTK Query,
-                Knockout.js
-            </p>
-        </div>
+    <div class="skills-single-card">
+        <h3>Languages</h3>
+        <p class="skills-text">
+            TypeScript, JavaScript (ES6+), HTML5, CSS3
+        </p>
 
-        <div class="skill-block">
-            <h3>UI & Styling</h3>
-            <p>
-                HTML5, CSS3, Material UI, Kendo UI, Bootstrap, Responsive Design
-            </p>
-        </div>
-
-        <div class="skill-block">
-            <h3>State & Data Handling</h3>
-            <p>
-                REST APIs, AJAX, API Integration, Memoization, Performance Optimization
-            </p>
-        </div>
-
-        <div class="skill-block">
-            <h3>Testing & Tools</h3>
-            <p>
-                Playwright, Unit Testing, Git, GitHub, Azure AD, Jira
-            </p>
-        </div>
+        <h3 style="margin-top: 1.5rem;">Frameworks & Libraries</h3>
+        <p class="skills-text">
+            React.js, Redux Toolkit, RTK Query, Node.js, Express, Knockout.js
+        </p>
     </div>
 </section>
 
